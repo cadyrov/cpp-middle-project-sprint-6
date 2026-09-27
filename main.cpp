@@ -1,8 +1,7 @@
-#include <chrono>
-#include <climits>
-#include <iostream>
-#include <print>
+#include <algorithm>
+#include <string>
 #include <thread>
+#include <vector>
 
 #include "logger.hpp"
 #include "task_dispatcher.hpp"
@@ -10,7 +9,7 @@
 using namespace dispatcher;
 
 int main() {
-    TaskDispatcher td(std::thread::hardware_concurrency());
+    TaskDispatcher td(std::max(1u, std::thread::hardware_concurrency()));
     std::vector<std::jthread> threads;
 
     for (int i = 0; i < 5; ++i) {
